@@ -1,0 +1,17 @@
+**`totalObligatedAmountPa`** — total $ FEMA committed for Public Assistance (infrastructure, debris, emergency measures). This is what we've been using as the target.
+
+**`totalObligatedAmountCatAb`** — subset of PA obligations specifically for Category A (debris removal) and B (emergency protective measures). Early response costs only.
+
+**`totalObligatedAmountCatC2g`** — subset of PA obligations for Categories C through G (roads, buildings, utilities, permanent repairs). Long term recovery costs.
+
+**`totalObligatedAmountHmgp`** — Hazard Mitigation Grant Programme obligations. Money spent on preventing future disasters, not recovering from this one.
+
+**`totalAmountIhpApproved`** — Individual & Households Programme approvals. Money going directly to affected individuals and families.
+
+**`totalAmountHaApproved`** — Housing Assistance subset of IHP. Rent, repairs, temporary housing.
+
+**`totalAmountOnaApproved`** — Other Needs Assistance subset of IHP. Medical, childcare, personal property.
+
+**`totalNumberIaApproved`** — count of approved Individual Assistance applications.
+
+pip freeze | findstr /R "fastapi uvicorn numpy pandas scikit-learn mlflow shap streamlit dotenv requests"

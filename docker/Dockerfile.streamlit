@@ -1,0 +1,29 @@
+FROM python:3.11-slim
+# Start from an official Python 3.11 image
+# "slim" means minimal size — no unnecessary OS packages
+
+WORKDIR /app
+# Create a folder called /app inside the container
+# All subsequent commands run from here
+
+COPY requirements.txt .
+# Copy requirements.txt from your machine into /app
+# We do this BEFORE copying everything else — explained below
+
+RUN pip install --no-cache-dir -r requirements.txt
+# Install all packages inside the container
+# This is why requirements.txt is copied first — Docker caches
+# this layer so if requirements don't change, it skips reinstalling
+
+COPY  . .
+# Copy everything else from your project into /app
+# First dot = source (your machine), second dot = destination (/app)
+
+EXPOSE 8501
+# Tell Docker this container listens on port 8501
+# Doesn't actually open the port — just documents it
+
+CMD ["streamlit", "run", "deployment/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+# The command to run when the container starts
+# "0.0.0.0" means accept connections from outside the container
+# Without this uvicorn only listens to localhost inside the container
